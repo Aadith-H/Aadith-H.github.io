@@ -1,49 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Aadith Hiremath</title>
-    <style>
-        body {
-            background-color: #0f1117;
-            color: white;
-            font-family: Arial;
-            text-align: center;
-            padding: 50px;
-        }
-
-        .card {
-            background: #1b1f2a;
-            padding: 20px;
-            border-radius: 12px;
-            width: 60%;
-            margin: auto;
-        }
-
-        h1 {
-            color: #42f5e6;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aadith Hiremath | Engineering Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<div class="card">
-    <h1>Aadith Hiremath</h1>
-    <p>Freshman interested in electronics, embedded systems, and PCB design.</p>
+  <nav class="navbar">
+    <h2 class="logo">Aadith</h2>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-    <h2>Projects</h2>
+  <section class="hero">
+    <div class="hero-content">
+      <p class="tag">PCB Design • Embedded Systems • Hardware</p>
+      <h1>Aadith Hiremath</h1>
+      <p class="subtitle">
+        Freshman at Panther Creek High School building real electronics through PCB design,
+        microcontrollers, coding, soldering, and debugging.
+      </p>
+      <a href="#projects" class="button">View Projects</a>
+    </div>
+  </section>
 
-    <p>• Button Counter PCB</p>
-    <p>• Embedded Systems Experiments</p>
-    <p>• Beehive community impact project at Appalachian State University</p>
-</div>
+  <section id="about" class="section fade-in">
+    <h2>About Me</h2>
+    <p>
+      I am interested in electronics, embedded systems, and PCB design. I enjoy taking ideas
+      from schematic design to PCB layout, then assembling, programming, and debugging the final board.
+    </p>
+  </section>
 
-<div class="card">
+  <section id="projects" class="section fade-in">
+    <h2>Featured Projects</h2>
+
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="image-placeholder">Counter Board Image</div>
+        <h3>Counter Board</h3>
+        <p>
+          A microcontroller-based button counter PCB that reads button input,
+          debounces the signal, and increments a displayed count.
+        </p>
+        <div class="tags">
+          <span>PCB Design</span>
+          <span>Microcontroller</span>
+          <span>Debugging</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="image-placeholder">Intruder Alarm Image</div>
+        <h3>Intruder Alarm PCB</h3>
+        <p>
+          A custom intruder alarm board designed to detect input from a sensor
+          and trigger an alarm output.
+        </p>
+        <div class="tags">
+          <span>Sensors</span>
+          <span>Embedded Systems</span>
+          <span>Hardware</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section fade-in">
     <h2>Skills</h2>
-    <p>• KiCad</p>
-    <p>• PCB Design</p>
-    <p>• Embedded C</p>
-</div>
+    <div class="skills">
+      <span>PCB Design</span>
+      <span>Schematic Design</span>
+      <span>Embedded Systems</span>
+      <span>Microcontrollers</span>
+      <span>Soldering</span>
+      <span>Testing & Debugging</span>
+      <span>Coding</span>
+    </div>
+  </section>
 
+  <section id="contact" class="section fade-in">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:aadith.hiremath@gmail.com">aadith.hiremath@gmail.com</a></p>
+    <p>GitHub: <a href="https://github.com/YOUR-USERNAME" target="_blank">github.com/YOUR-USERNAME</a></p>
+  </section>
+
+  <footer>
+    <p>© 2026 Aadith Hiremath</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
