@@ -6,74 +6,324 @@
   <title>Aadith Hiremath | Engineering Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <div class="boot-screen" id="bootScreen">
+  <div class="boot-box">
+    <p class="boot-label">Initializing Engineering Portfolio</p>
+    <div class="boot-bar">
+      <div class="boot-fill"></div>
+    </div>
+    <p class="boot-small">Loading Projects...</p>
+  </div>
+</div>
+
+ <div class="custom-cursor">
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+</div>
 
   <nav class="navbar">
-    <h2 class="logo">Aadith</h2>
-    <div class="nav-links">
+    <a href="#" class="logo">Aadith</a>
+
+    <button class="menu-toggle" id="menuToggle">☰</button>
+
+    <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
+      <a href="#portfolio">Projects</a>
+      <a href="#experience">Timeline</a>
+      <a href="#activities">Activities</a>
+      <a href="#currently-building">Building</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="hero-content">
-      <p class="tag">PCB Design • Embedded Systems • Hardware</p>
-      <h1>Aadith Hiremath</h1>
-      <p class="subtitle">
-        Freshman at Panther Creek High School building real electronics through PCB design,
-        microcontrollers, coding, soldering, and debugging.
-      </p>
-      <a href="#projects" class="button">View Projects</a>
-    </div>
-  </section>
+  <section class="hero night-section">
+<canvas id="pcbCanvas" class="pcb-canvas"></canvas>
+  <div class="signal-lines">
+    <div class="signal-line line-one"></div>
+    <div class="signal-line line-two"></div>
+    <div class="signal-line line-three"></div>
+  </div>
 
-  <section id="about" class="section fade-in">
-    <h2>About Me</h2>
-    <p>
-      I am interested in electronics, embedded systems, and PCB design. I enjoy taking ideas
-      from schematic design to PCB layout, then assembling, programming, and debugging the final board.
+  <div class="hero-content reveal-up">
+    <p class="tag">PCB Design • Embedded Systems • Hardware Development</p>
+
+    <h1>Aadith Hiremath</h1>
+
+    <p class="hero-title">Engineering Portfolio</p>
+
+    <p class="subtitle">
+      Building hardware from schematic to firmware.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#portfolio" class="button">View Engineering Portfolio</a>
+      <a href="#currently-building" class="button secondary-button">Currently Building</a>
+    </div>
+
+    <a href="#about" class="scroll-cue">
+      <span>Scroll to Explore</span>
+      <div class="scroll-dot"></div>
+    </a>
+  </div>
+</section>
+
+  <section id="about" class="section reveal-left calm-section">
+    <p class="section-label">About Me</p>
+    <h2>Building hardware from idea to working circuit.</h2>
+    <p class="large-text">
+      Ever since I built my first PCB, I have been fascinated by the intersection of hardware and software.
+      I enjoy taking ideas from a blank schematic to a fully functioning circuit board by designing,
+      assembling, programming, and debugging each step along the way. My goal is to keep pushing my skills
+      through increasingly complex engineering projects while documenting everything I learn.
     </p>
   </section>
 
-  <section id="projects" class="section fade-in">
+  <section id="portfolio" class="section reveal-up project-zone">
+    <p class="section-label">Engineering Portfolio</p>
     <h2>Featured Projects</h2>
+    <p class="section-intro">
+      These projects combine PCB design, embedded systems, testing, documentation, debugging, and presentation.
+    </p>
+  </section>
 
-    <div class="project-grid">
-      <div class="project-card">
-        <div class="image-placeholder">Counter Board Image</div>
-        <h3>Counter Board</h3>
+  <section id="counter-board" class="project-showcase reveal-right project-zone">
+    <div class="project-header">
+      <p class="project-label">Featured Project 01</p>
+      <h2>Counter Board</h2>
+      <p>
+        A microcontroller-based button counter PCB designed to read button input,
+        debounce the signal, and increment a displayed count.
+      </p>
+    </div>
+
+    <div class="video-frame">
+      <video autoplay muted loop playsinline>
+        <source src="videos/counter-spin.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec-card">
+        <span>Project Type</span>
+        <strong>Embedded PCB</strong>
+      </div>
+      <div class="spec-card">
+        <span>Software</span>
+        <strong>OrCAD X</strong>
+      </div>
+      <div class="spec-card">
+        <span>Focus</span>
+        <strong>Firmware + Hardware</strong>
+      </div>
+      <div class="spec-card">
+        <span>Status</span>
+        <strong>Completed</strong>
+      </div>
+    </div>
+
+    <div class="project-content">
+      <div class="info-card">
+        <h3>Overview</h3>
         <p>
-          A microcontroller-based button counter PCB that reads button input,
-          debounces the signal, and increments a displayed count.
+          This project helped me understand how hardware and firmware interact in an embedded system.
+          I designed the PCB, assembled the board, programmed the logic, and debugged issues until
+          the counter worked reliably.
         </p>
-        <div class="tags">
-          <span>PCB Design</span>
-          <span>Microcontroller</span>
-          <span>Debugging</span>
+      </div>
+
+      <div class="info-card">
+        <h3>Design Challenges</h3>
+        <ul>
+          <li>Handling button bounce reliably in firmware</li>
+          <li>Debugging display output problems</li>
+          <li>Understanding bit order and signal behavior</li>
+          <li>Testing the assembled board after soldering</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Lessons Learned</h3>
+        <ul>
+          <li>PCB layout and schematic design</li>
+          <li>Embedded systems debugging</li>
+          <li>How firmware decisions affect hardware behavior</li>
+          <li>The importance of testing small parts of a system</li>
+        </ul>
+      </div>
+    </div>
+
+<div class="gallery-grid">
+  <div class="gallery-card">
+    <h3>PCB Layout</h3>
+    <img src="images/counter-layout.png" alt="Counter Board PCB layout" />
+  </div>
+
+  <div class="gallery-card">
+    <h3>Schematic</h3>
+    <img src="images/counter-schematic.png" alt="Counter Board schematic" />
+  </div>
+
+  <div class="gallery-card">
+    <h3>Board Photo</h3>
+    <img src="images/counter-photo.png" alt="Counter Board photo" />
+  </div>
+</div>
+
+    <div class="download-row">
+      <a href="files/counter-gerbers.zip" class="download-button">Download Gerbers</a>
+      <a href="files/counter-schematic.pdf" class="download-button">Download Schematic</a>
+      <a href="#" class="download-button disabled">Firmware Coming Soon</a>
+      <a href="#" class="download-button disabled">BOM Coming Soon</a>
+    </div>
+  </section>
+
+  <section id="intruder-alarm" class="project-showcase reveal-left project-zone">
+    <div class="project-header">
+      <p class="project-label">Featured Project 02</p>
+      <h2>Intruder Alarm PCB</h2>
+      <p>
+        A custom intruder alarm board designed to detect input and display a visual alert sequence.
+      </p>
+    </div>
+
+    <div class="carousel" id="intruderCarouselBox">
+      <button class="carousel-arrow left-arrow" id="prevIntruder">‹</button>
+      <img id="intruderCarousel" src="images/intruder-1.png" alt="Intruder Alarm animation frame" />
+      <button class="carousel-arrow right-arrow" id="nextIntruder">›</button>
+
+      <div class="carousel-dots">
+        <span class="dot active" data-slide="0"></span>
+        <span class="dot" data-slide="1"></span>
+        <span class="dot" data-slide="2"></span>
+        <span class="dot" data-slide="3"></span>
+      </div>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec-card">
+        <span>Project Type</span>
+        <strong>Security Display PCB</strong>
+      </div>
+      <div class="spec-card">
+        <span>Focus</span>
+        <strong>Visual Alert Logic</strong>
+      </div>
+      <div class="spec-card">
+        <span>Output</span>
+        <strong>Display Sequence</strong>
+      </div>
+      <div class="spec-card">
+        <span>Status</span>
+        <strong>Completed</strong>
+      </div>
+    </div>
+
+    <div class="project-content">
+      <div class="info-card">
+        <h3>Overview</h3>
+        <p>
+          This project uses a visual display sequence to represent an intruder alarm state.
+          The carousel shows the display progressing from eyes to warning symbols to an intruder message.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Design Challenges</h3>
+        <ul>
+          <li>Creating a clear visual alert sequence</li>
+          <li>Organizing the PCB around the display</li>
+          <li>Designing around a real-world use case</li>
+          <li>Making the output easy to understand quickly</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Lessons Learned</h3>
+        <ul>
+          <li>Designing around user feedback</li>
+          <li>Planning visual states for a circuit</li>
+          <li>PCB documentation and presentation</li>
+          <li>Turning a concept into a finished board</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <h3>PCB Layout</h3>
+        <img src="images/intruder-layout.png" alt="Intruder Alarm PCB layout" />
+      </div>
+
+      <div class="gallery-card">
+        <h3>Schematic</h3>
+        <img src="images/intruder-schematic.png" alt="Intruder Alarm schematic" />
+      </div>
+
+      <div class="gallery-card">
+        <h3>Display Sequence</h3>
+        <img src="images/intruder-4.png" alt="Intruder Alarm display showing INTRUDER" />
+      </div>
+    </div>
+
+    <div class="download-row">
+      <a href="files/intruder-gerbers.zip" class="download-button">Download Gerbers</a>
+      <a href="files/intruder-schematic.pdf" class="download-button">Download Schematic</a>
+      <a href="#" class="download-button disabled">Firmware Coming Soon</a>
+      <a href="#" class="download-button disabled">BOM Coming Soon</a>
+    </div>
+  </section>
+
+  <section id="experience" class="section reveal-up calm-section">
+    <p class="section-label">Timeline</p>
+    <h2>Engineering timeline.</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <span>2025</span>
+        <div>
+          <h3>Counter Board</h3>
+          <p>Designed, assembled, programmed, and debugged a microcontroller-based PCB.</p>
         </div>
       </div>
 
-      <div class="project-card">
-        <div class="image-placeholder">Intruder Alarm Image</div>
-        <h3>Intruder Alarm PCB</h3>
-        <p>
-          A custom intruder alarm board designed to detect input from a sensor
-          and trigger an alarm output.
-        </p>
-        <div class="tags">
-          <span>Sensors</span>
-          <span>Embedded Systems</span>
-          <span>Hardware</span>
+      <div class="timeline-item">
+        <span>2025</span>
+        <div>
+          <h3>Intruder Alarm PCB</h3>
+          <p>Created a PCB project with a visual alert sequence and security-inspired concept.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span>Future</span>
+        <div>
+          <h3>More Projects</h3>
+          <p>This portfolio will continue growing with new boards, competitions, jobs, and experiences.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="skills" class="section fade-in">
-    <h2>Skills</h2>
+  <section id="activities" class="section reveal-left calm-section">
+    <p class="section-label">Activities</p>
+    <h2>What I’m involved in.</h2>
+
+    <div class="skills">
+      <span>FTC Robotics</span>
+      <span>TSA</span>
+      <span>Marching Band</span>
+      <span>Symphonic Band</span>
+      <span>Kalaripayattu</span>
+      <span>Coding</span>
+    </div>
+  </section>
+
+  <section id="skills" class="section reveal-right calm-section">
+    <p class="section-label">Skills</p>
+    <h2>Tools and technical areas I’m building.</h2>
+
     <div class="skills">
       <span>PCB Design</span>
       <span>Schematic Design</span>
@@ -82,18 +332,95 @@
       <span>Soldering</span>
       <span>Testing & Debugging</span>
       <span>Coding</span>
+      <span>Technical Documentation</span>
     </div>
   </section>
 
-  <section id="contact" class="section fade-in">
-    <h2>Contact</h2>
+  <section id="currently-building" class="section reveal-up project-zone">
+    <p class="section-label">Currently Building</p>
+    <h2>This portfolio is never finished.</h2>
+
+    <div class="project-content">
+      <div class="info-card">
+        <h3>Next PCB Project</h3>
+        <p>Planning future boards with more advanced embedded systems features.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>Portfolio Improvements</h3>
+        <p>Adding more documentation, downloads, photos, and engineering writeups over time.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>New Skills</h3>
+        <p>Continuing to learn PCB layout, firmware, debugging, and hardware design.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="journal" class="section reveal-left calm-section">
+    <p class="section-label">Engineering Journal</p>
+    <h2>Notes from the build process.</h2>
+
+    <div class="journal-grid">
+      <div class="journal-card">
+        <span>Counter Board</span>
+        <h3>Debugging button input</h3>
+        <p>
+          One challenge was making sure a single button press only counted once.
+          This helped me learn why input debouncing matters in embedded systems.
+        </p>
+      </div>
+
+      <div class="journal-card">
+        <span>Counter Board</span>
+        <h3>Bit order issue</h3>
+        <p>
+          Debugging the display helped me understand how small firmware assumptions can completely
+          change the behavior of hardware outputs.
+        </p>
+      </div>
+
+      <div class="journal-card">
+        <span>Intruder Alarm</span>
+        <h3>Visual alert design</h3>
+        <p>
+          The display sequence was designed to make the alarm state obvious quickly,
+          moving from eyes to warning symbols to a clear intruder message.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="section reveal-right calm-section">
+    <p class="section-label">Resume</p>
+    <h2>Experience, projects, and skills in one place.</h2>
+    <p class="section-intro">
+      A resume download can go here later once you have a polished PDF version.
+    </p>
+    <div class="download-row">
+      <a href="#" class="download-button disabled">Resume Coming Soon</a>
+    </div>
+  </section>
+
+  <section id="contact" class="section reveal-up contact-section">
+    <p class="section-label">Contact</p>
+    <h2>Let’s connect.</h2>
+
     <p>Email: <a href="mailto:aadith.hiremath@gmail.com">aadith.hiremath@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/YOUR-USERNAME" target="_blank">github.com/Aadith-H</a></p>
+    <p>GitHub: <a href="https://github.com/YOUR-USERNAME" target="_blank">github.com/YOUR-USERNAME</a></p>
   </section>
 
   <footer>
     <p>© 2026 Aadith Hiremath</p>
   </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-button" id="lightboxPrev">‹</button>
+    <img id="lightboxImage" src="" alt="Expanded project image" />
+    <button class="lightbox-button" id="lightboxNext">›</button>
+    <button class="lightbox-close" id="lightboxClose">×</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
