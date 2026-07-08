@@ -42,12 +42,13 @@ if (menuToggle && navLinks) {
 
 
 /* ================================
-   PREMIUM CURSOR
+   EPIC PCB VIA CURSOR
 ================================ */
 
-const cursor = document.querySelector(".custom-cursor");
-const dot = document.querySelector(".cursor-dot");
-const ring = document.querySelector(".cursor-ring");
+const cursor = document.getElementById("customCursor");
+const cursorVia = document.querySelector(".cursor-via");
+const cursorRing = document.querySelector(".cursor-ring");
+const cursorLabel = document.getElementById("cursorLabel");
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
@@ -55,26 +56,68 @@ let mouseY = window.innerHeight / 2;
 let ringX = mouseX;
 let ringY = mouseY;
 
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
+let lastTrailTime = 0;
+let lastTrailX = mouseX;
+let lastTrailY = mouseY;
+
+document.addEventListener("mousemove", (event) => {
+  mouseX = event.clientX;
+  mouseY = event.clientY;
 
   document.body.style.setProperty("--mouse-x", `${mouseX}px`);
   document.body.style.setProperty("--mouse-y", `${mouseY}px`);
 
-  if (dot) {
-    dot.style.left = mouseX + "px";
-    dot.style.top = mouseY + "px";
+  if (cursorVia) {
+    cursorVia.style.left = `${mouseX}px`;
+    cursorVia.style.top = `${mouseY}px`;
+  }
+
+  if (cursorLabel) {
+    cursorLabel.style.left = `${mouseX}px`;
+    cursorLabel.style.top = `${mouseY - 48}px`;
+  }
+
+  const now = Date.now();
+  const distance = Math.hypot(mouseX - lastTrailX, mouseY - lastTrailY);
+
+  if (now - lastTrailTime > 400 && distance > 22 && !cursor?.classList.contains("cursor-hover")) {
+if (document.elementFromPoint(mouseX, mouseY)?.closest("#hero")) {
+  createTraceTrail(lastTrailX, lastTrailY, mouseX, mouseY);
+  createViaTrail(mouseX, mouseY);
+}
+    lastTrailTime = now;
+    lastTrailX = mouseX;
+    lastTrailY = mouseY;
+    function createTraceTrail(x1, y1, x2, y2) {
+  const trace = document.createElement("div");
+  trace.className = "trail-trace";
+
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const length = Math.hypot(dx, dy);
+  const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+  trace.style.left = `${x1}px`;
+  trace.style.top = `${y1}px`;
+  trace.style.width = `${length}px`;
+  trace.style.transform = `rotate(${angle}deg)`;
+
+  document.body.appendChild(trace);
+
+  setTimeout(() => {
+    trace.remove();
+  }, 5600);
+}
   }
 });
 
 function animateCursor() {
-  ringX += (mouseX - ringX) * 0.18;
-  ringY += (mouseY - ringY) * 0.18;
+  ringX += (mouseX - ringX) * 0.16;
+  ringY += (mouseY - ringY) * 0.16;
 
-  if (ring) {
-    ring.style.left = ringX + "px";
-    ring.style.top = ringY + "px";
+  if (cursorRing) {
+    cursorRing.style.left = `${ringX}px`;
+    cursorRing.style.top = `${ringY}px`;
   }
 
   requestAnimationFrame(animateCursor);
@@ -82,16 +125,74 @@ function animateCursor() {
 
 animateCursor();
 
-document.querySelectorAll(
-  "a, button, .gallery-card img, .carousel img, .carousel-arrow, .dot"
-).forEach((element) => {
-  element.addEventListener("mouseenter", () => {
-    cursor.classList.add("cursor-hover");
-  });
+function createViaTrail(x, y) {
+  const via = document.createElement("div");
+  via.className = "via-trail";
+  via.style.left = `${x}px`;
+  via.style.top = `${y}px`;
 
-  element.addEventListener("mouseleave", () => {
+  const size = 18 + Math.random() * 8;
+  via.style.width = `${size}px`;
+  via.style.height = `${size}px`;
+
+  document.body.appendChild(via);
+
+  setTimeout(() => {
+    via.remove();
+  }, 5500);
+}
+
+function setCursorLabel(text) {
+  if (!cursor || !cursorLabel) return;
+
+  if (text) {
+    cursorLabel.textContent = text;
+    cursor.classList.add("cursor-hover");
+  } else {
+    cursorLabel.textContent = "";
     cursor.classList.remove("cursor-hover");
+  }
+}
+
+const hoverTargets = [
+  { selector: ".gallery-card img", label: "ZOOM" },
+  { selector: ".carousel img", label: "ZOOM" },
+  { selector: ".video-frame", label: "VIEW" },
+  { selector: ".download-button:not(.disabled)", label: "DOWNLOAD" },
+  { selector: ".info-card", label: "EXPLORE" },
+  { selector: ".spec-card", label: "SPEC" },
+  { selector: ".journal-card", label: "NOTE" },
+  { selector: ".timeline-item", label: "STEP" },
+  { selector: "a[href^='mailto']", label: "EMAIL" },
+  { selector: "a[href*='github']", label: "CODE" },
+  { selector: ".button", label: "GO" },
+  { selector: "button", label: "CLICK" }
+];
+
+hoverTargets.forEach((target) => {
+  document.querySelectorAll(target.selector).forEach((element) => {
+    element.addEventListener("mouseenter", () => {
+      setCursorLabel(target.label);
+    });
+
+    element.addEventListener("mouseleave", () => {
+      setCursorLabel("");
+    });
   });
+});
+
+document.addEventListener("mousedown", () => {
+  if (cursorRing) {
+    cursorRing.style.width = "86px";
+    cursorRing.style.height = "86px";
+  }
+});
+
+document.addEventListener("mouseup", () => {
+  if (cursorRing) {
+    cursorRing.style.width = "";
+    cursorRing.style.height = "";
+  }
 });
 /* ================================
    CARD SPOTLIGHT EFFECT
@@ -110,6 +211,17 @@ spotlightCards.forEach((card) => {
     card.style.setProperty("--x", `${x}px`);
     card.style.setProperty("--y", `${y}px`);
   });
+});
+
+const hero = document.getElementById("hero");
+let heroHover = false;
+
+hero.addEventListener("mouseenter", () => {
+    heroHover = true;
+});
+
+hero.addEventListener("mouseleave", () => {
+    heroHover = false;
 });
 
 
@@ -524,12 +636,12 @@ if (pcbCanvas) {
       ctx.lineTo(points[i].x, points[i].y);
     }
 
-    ctx.strokeStyle = "rgba(0, 200, 255, 0.33)";
+   ctx.strokeStyle = `rgba(0, 200, 255, ${0.09 + Math.random() * 0.08})`;
     ctx.lineWidth = 4;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    ctx.shadowColor = "rgba(0, 200, 255, 0.55)";
-    ctx.shadowBlur = 12;
+   ctx.shadowColor = `rgba(0, 200, 255, ${0.12 + Math.random() * 0.12})`;
+    ctx.shadowBlur = 5;
     ctx.stroke();
 
     ctx.strokeStyle = "rgba(255, 255, 255, 0.10)";

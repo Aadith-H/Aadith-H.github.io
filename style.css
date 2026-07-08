@@ -1785,3 +1785,167 @@ body::after {
   position: relative;
   z-index: 2;
 }
+
+/* ================================
+   EPIC PCB VIA CURSOR
+================================ */
+
+body,
+a,
+button,
+img,
+video,
+.dot,
+.carousel-arrow {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.cursor-via {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(0, 200, 255, 0.95);
+  border-radius: 50%;
+  background: rgba(7, 11, 16, 0.9);
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 18px rgba(0, 200, 255, 0.9),
+    inset 0 0 8px rgba(0, 200, 255, 0.35);
+}
+
+.cursor-via::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #03070c;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(0, 200, 255, 0.55);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 28px rgba(0, 200, 255, 0.25),
+    inset 0 0 18px rgba(0, 200, 255, 0.1);
+  transition:
+    width 0.18s ease,
+    height 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.cursor-label {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.4px;
+  opacity: 0;
+  text-transform: uppercase;
+  text-shadow: 0 0 14px rgba(0, 200, 255, 0.9);
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.custom-cursor.cursor-hover .cursor-ring {
+  width: 72px;
+  height: 72px;
+  border-color: rgba(0, 200, 255, 1);
+  background: rgba(0, 200, 255, 0.07);
+}
+
+.custom-cursor.cursor-hover .cursor-label {
+  opacity: 1;
+}
+
+.via-trail {
+  position: fixed;
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(0, 200, 255, 0.55);
+  border-radius: 50%;
+  background: rgba(7, 11, 16, 0.65);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 14px rgba(0, 200, 255, 0.45);
+  animation: viaFade 5.1s ease-out forwards;
+}
+
+.via-trail::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #03070c;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes viaFade {
+  from {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.25);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  body,
+  a,
+  button,
+  img,
+  video,
+  .dot,
+  .carousel-arrow {
+    cursor: auto;
+  }
+
+  .custom-cursor,
+  .via-trail {
+    display: none;
+  }
+}
+
+.trail-trace {
+  position: fixed;
+  height: 2px;
+  background: rgba(0, 200, 255, 0.35);
+  pointer-events: none;
+  z-index: 9997;
+  transform-origin: left center;
+  box-shadow: 0 0 12px rgba(0, 200, 255, 0.45);
+  animation: traceFade 5s ease-out forwards;
+}
+
+@keyframes traceFade {
+  from {
+    opacity: 0.75;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
